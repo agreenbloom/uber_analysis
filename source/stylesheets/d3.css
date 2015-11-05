@@ -1,0 +1,32 @@
+#tooltip {
+  position: absolute;
+  text-align: center;
+  font: 20px sans-serif;
+  background: blue;
+  border-radius: 8px;
+}
+
+path {
+  stroke: #415367;
+  stroke-width: 1px;
+
+}
+
+.d:hover, .d.highlighted {
+  fill: blue;
+}
+
+
+.fill {
+  fill: #fff;
+}
+
+.graticule {
+  fill: none;
+  stroke: gray;
+  stroke-width: .5px;
+  stroke-opacity: .5;
+}
+
+
+
