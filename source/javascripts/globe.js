@@ -29,8 +29,8 @@ $(document).on('ready', function(){
       .range(["rgb(141,211,199)","rgb(255,255,179)","rgb(190,186,218)", "rgb(251,128,114)"]);
 
 queue()
-    .defer(d3.json, "world.geojson")
-    .defer(d3.csv, "cities.csv")
+    .defer(d3.json, "/json/world.geojson")
+    .defer(d3.csv, "/data/cities.csv")
     .await(map)
 
 
