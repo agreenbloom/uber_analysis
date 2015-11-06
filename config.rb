@@ -70,3 +70,11 @@ configure :build do
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
 end
+
+# github deploy
+ activate :deploy do |deploy|
+   deploy.method = :git
+   deploy.build_before = true
+   deploy.branch   = "gh-pages"
+   deploy.remote   = "git@github.com:agreenbloom/agreenbloom.github.io.git"
+end
