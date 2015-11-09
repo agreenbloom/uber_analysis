@@ -1,3 +1,5 @@
+$(document).on('ready', function(){
+
   var width = 1230,
       height = 1160;
 
@@ -111,5 +113,9 @@
     .attr("transform", "translate(350,360)")
     .attr("class", "legend")
     .call(verticalLegend);
+
+
+
+});
 
 
