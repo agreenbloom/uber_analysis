@@ -16,8 +16,11 @@ $(document).on('ready', function(){
     .projection(projection);
 
   var svg = d3.select("#globe").append("svg")
+    .attr("id", "globe_svg")
     .attr("width", width)
     .attr("height", height);
+
+  var svg_selector = "#globe_svg";
 
   var graticule = d3.geo.graticule();
 
@@ -46,16 +49,16 @@ queue()
       .attr("class", "countries");
 
     var mapZoom = d3.behavior.zoom().translate(projection.translate()).scale(projection.scale()).on("zoom", zoomed);
-    d3.select("svg").call(mapZoom);
+    d3.select(svg_selector).call(mapZoom);
 
     var rotateScale = d3.scale.linear()
     .domain([0, width])
     .range([-180, 180]);
 
-    d3.select("svg").on("mousedown", startRotating).on("mouseup", stopRotating);
+    d3.select(svg_selector).on("mousedown", startRotating).on("mouseup", stopRotating);
 
     function startRotating() {
-      d3.select("svg").on("mousemove", function() {
+      d3.select(svg_selector).on("mousemove", function() {
         var p = d3.mouse(this);
         projection.rotate([rotateScale(p[0]), 0]);
         zoomed();
@@ -63,7 +66,7 @@ queue()
     }
 
     function stopRotating() {
-      d3.select("svg").on("mousemove", null);
+      d3.select(svg_selector).on("mousemove", null);
     }
 
     function zoomed() {
@@ -83,7 +86,7 @@ queue()
         d3.max(cities, function(d) { return d.allowed; })
       ]);
 
-        d3.select("svg").selectAll("circle").data(cities)
+        d3.select(svg_selector).selectAll("circle").data(cities)
           .enter()
           .append("circle")
           .attr("class", "cities")
@@ -103,8 +106,7 @@ queue()
 
   };
 
-
-  d3.select("svg").append("path")
+  d3.select(svg_selector).append("path")
     .datum(graticule)
     .attr("class", "graticule line")
     .attr("d", path)
@@ -112,7 +114,7 @@ queue()
     .style("stroke", "grey")
     .style("stroke-width", "1px");
 
-    d3.select("svg").append("path")
+    d3.select(svg_selector).append("path")
       .datum(graticule.outline)
       .attr("class", "graticule outline")
       .attr("d", path)
